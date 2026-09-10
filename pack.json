@@ -1,7 +1,7 @@
 {
   "manifest_version": 1,
   "id": "chatgpt.files",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "requires": {
     "pack_api": 1,
     "dependencies": []
@@ -28,12 +28,12 @@
     {
       "contract": "tap.page-resource/v1",
       "id": "chatgpt.files.feature",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "kind": "browser-classic-script",
       "file": "feature.js",
-      "sha256": "db9b9112a6657f9c68520e0bd0c6998b7fa767e9d4984c9dbf5649be8d9f4a79",
+      "sha256": "70ca5d7250b63d9fb6ad08af4674f8bb37e6f7051dacc98b36ad0a1e58dd4211",
       "license": "MIT",
-      "source_revision": "sha256:db9b9112a6657f9c68520e0bd0c6998b7fa767e9d4984c9dbf5649be8d9f4a79"
+      "source_revision": "sha256:70ca5d7250b63d9fb6ad08af4674f8bb37e6f7051dacc98b36ad0a1e58dd4211"
     }
   ],
   "features": [
@@ -53,7 +53,7 @@
       "interface": "browser-scripts-v1",
       "uses": [
         {"id": "chatgpt.ui", "version": "0.1.0"},
-        {"id": "chatgpt.files.feature", "version": "0.1.1"}
+        {"id": "chatgpt.files.feature", "version": "0.1.2"}
       ]
     },
     "handler": {

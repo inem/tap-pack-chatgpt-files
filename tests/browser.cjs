@@ -18,6 +18,14 @@ const { chromium } = require(process.env.PLAYWRIGHT_PATH || 'playwright');
   assert.deepEqual(result.requests.map(x => [x.handler,x.args.action]), [['chatgpt.files','reveal'],['chatgpt.files','copy_path']]);
   assert.deepEqual(result.icons, [{width:'18',stroke:'currentColor',hidden:'true'},{width:'18',stroke:'currentColor',hidden:'true'}]);
   assert.deepEqual(result.order, ['tap-chatgpt-files-reveal','tap-chatgpt-files-copy-path','share']);
+
+  await page.evaluate(() => history.pushState({}, '', '/'));
+  await page.waitForFunction(() => !document.querySelector('[data-cgq-id^="tap-chatgpt-files-"]'));
+  assert.equal(await page.locator('[data-cgq-id^="tap-chatgpt-files-"]').count(), 0);
+
+  await page.evaluate(() => history.pushState({}, '', '/c/6aa023af-8a24-83ed-8e28-7229f939f99c'));
+  await page.waitForFunction(() => document.querySelectorAll('[data-cgq-id^="tap-chatgpt-files-"]').length === 2);
+  assert.equal(await page.locator('[data-cgq-id^="tap-chatgpt-files-"]').count(), 2);
   await browser.close();
   console.log('browser fixture OK');
 })().catch(error => { console.error(error); process.exit(1); });
