@@ -21,6 +21,10 @@
     window.ChatGPTUI?.showToast?.(message, {id: 'tap-chatgpt-files-status', duration: 3500});
   }
 
+  function removeControls() {
+    document.querySelectorAll('[data-cgq-id^="tap-chatgpt-files-"]').forEach(element => element.remove());
+  }
+
   async function run(action) {
     const conversation_id = conversationId();
     if (!conversation_id) {
@@ -38,6 +42,13 @@
 
   function mount() {
     if (stopped || !window.ChatGPTUI || !window.TapBridge) return;
+    if (!conversationId()) {
+      removeControls();
+      return;
+    }
+    // Avoid ChatGPTUI's deferred fallback mounting controls after a quick SPA
+    // navigation back to the homepage.
+    if (!document.querySelector('#conversation-header-actions')) return;
     window.ChatGPTUI.addTopHeaderButton({
       id: 'tap-chatgpt-files-reveal',
       icon: icons.reveal,
@@ -68,7 +79,7 @@
       stopped = true;
       observer.disconnect();
       window.clearInterval(timer);
-      document.querySelectorAll('[data-cgq-id^="tap-chatgpt-files-"]').forEach(element => element.remove());
+      removeControls();
     },
   });
 })();
