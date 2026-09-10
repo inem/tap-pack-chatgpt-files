@@ -1,0 +1,76 @@
+{
+  "manifest_version": 1,
+  "id": "chatgpt.files",
+  "version": "0.1.0",
+  "requires": {
+    "pack_api": 1,
+    "dependencies": []
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "PROVENANCE.md",
+    "chatgpt-ui.js",
+    "feature.js",
+    "handler.py"
+  ],
+  "resources": [
+    {
+      "contract": "tap.page-resource/v1",
+      "id": "chatgpt.ui",
+      "version": "0.1.0",
+      "kind": "browser-classic-script",
+      "file": "chatgpt-ui.js",
+      "sha256": "3ecd36d85a54c364f845100acfdaad66161a917106f5f08b4dc4775e4d9e83a2",
+      "license": "MIT",
+      "source_revision": "8b2118560f9e4b3421c0d923b4e1b8d681aa75f1"
+    },
+    {
+      "contract": "tap.page-resource/v1",
+      "id": "chatgpt.files.feature",
+      "version": "0.1.0",
+      "kind": "browser-classic-script",
+      "file": "feature.js",
+      "sha256": "8b83c790d04789d09822bccf509a465f4848fb01abf66ce5a4c14b8038375d5e",
+      "license": "MIT",
+      "source_revision": "sha256:8b83c790d04789d09822bccf509a465f4848fb01abf66ce5a4c14b8038375d5e"
+    }
+  ],
+  "features": [
+    {
+      "id": "reveal-markdown",
+      "label": "Reveal Markdown",
+      "value": "Finder"
+    },
+    {
+      "id": "copy-markdown-path",
+      "label": "Copy Markdown path",
+      "value": "Local clipboard"
+    }
+  ],
+  "entrypoints": {
+    "page": {
+      "interface": "browser-scripts-v1",
+      "uses": [
+        {"id": "chatgpt.ui", "version": "0.1.0"},
+        {"id": "chatgpt.files.feature", "version": "0.1.0"}
+      ]
+    },
+    "handler": {
+      "file": "handler.py",
+      "interface": "python-jsonl-v1"
+    }
+  },
+  "config": {},
+  "access": {
+    "origins": [
+      "https://chatgpt.com",
+      "https://www.chatgpt.com",
+      "https://chat.openai.com"
+    ],
+    "capabilities": [
+      "page.inject",
+      "bridge.handle"
+    ]
+  }
+}

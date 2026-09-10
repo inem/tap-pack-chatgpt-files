@@ -1,0 +1,10 @@
+{
+  "contract": "tap.page-resource/v1",
+  "id": "chatgpt.ui",
+  "version": "0.1.0",
+  "kind": "browser-classic-script",
+  "file": "chatgpt-ui.js",
+  "sha256": "3ecd36d85a54c364f845100acfdaad66161a917106f5f08b4dc4775e4d9e83a2",
+  "license": "MIT",
+  "source_revision": "8b2118560f9e4b3421c0d923b4e1b8d681aa75f1"
+}
